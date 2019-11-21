@@ -1,0 +1,3 @@
+#!/bin/bash
+curl -s https://physionet.org/physiotools/matlab/wfdb-app-matlab/wfdb-app-toolbox-0-10-0.tar.gz | tar zx
+matlab -nodisplay -r "cd mcode; addpath(pwd); savepath;"
