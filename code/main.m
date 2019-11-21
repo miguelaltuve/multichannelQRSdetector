@@ -2,6 +2,7 @@
 
 %addpath(pwd);
 
-singlechannel_detection_performance_main;
+wfdbdemo
+%singlechannel_detection_performance_main;
 
-multichannel_detector_performance_main;
+%multichannel_detector_performance_main;
