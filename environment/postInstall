@@ -1,6 +1,5 @@
 #!/bin/bash
 
-wfdb_url='https://physionet.org/physiotools/matlab/wfdb-app-matlab/wfdb-app-toolbox-0-10-0.zip';
-matlab -nodisplay -r "[filestr,status] = urlwrite(wfdb_url,'wfdb-app-toolbox-0-10-0.zip');"
-unzip('wfdb-app-toolbox-0-10-0.zip');
+curl -s https://physionet.org/physiotools/matlab/wfdb-app-matlab/wfdb-app-toolbox-0-10-0.zip
+unzip('wfdb-app-toolbox-0-10-0.zip')
 matlab -nodisplay -r "cd mcode; addpath(pwd); savepath"
