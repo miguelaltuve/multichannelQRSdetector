@@ -1,0 +1,5 @@
+# hash:sha256:67bdd59c074f03a02fab979eb25848e6441524d0e303a3fd38035a9b95087838
+FROM registry.codeocean.com/codeocean/matlab:2016b-ubuntu16.04
+
+ARG DEBIAN_FRONTEND=noninteractive
+ARG MLM_LICENSE_FILE
