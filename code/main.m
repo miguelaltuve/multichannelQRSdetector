@@ -6,4 +6,8 @@
 
 %multichannel_detector_performance_main;
 
-wfdbdemo
+wfdbdemo;
+
+[sig, Fs, tm] = rdsamp('mitdb/100', 1);
+plot(tm, sig);
+saveas(gcf, '../results/mitdb100.png');
