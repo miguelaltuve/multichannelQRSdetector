@@ -1,6 +1,6 @@
-cd /home/miguelaltuve/Documents/MATLAB/detection_latidos_multilead/code
+%cd /home/miguelaltuve/Documents/MATLAB/detection_latidos_multilead/code
 
-addpath(pwd);
+%addpath(pwd);
 
 singlechannel_detection_performance_main;
 
