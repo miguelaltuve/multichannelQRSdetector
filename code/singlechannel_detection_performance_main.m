@@ -1,4 +1,3 @@
-
 % This script permits obtaining singlechannel QRS complex detection
 % performance using six different QRS complex detector on two different
 % databases: MIT and INCART. Singlechannel detectors are: Pan and Tompkins
@@ -86,7 +85,7 @@ performance = cell(1, N); % Cell of performance
 %Perform detection on all ECG channels
 for j = 1 : N
     
-    for i = 1 : L % Perform detection on every record (the entire duration of the record)
+    for i = 1 : L % Perform detection on every record 
         
         record_id=records(i).name(1:3); % name of record
         [signal,fs,~]= rdsamp(record_id); % Reading record
@@ -122,7 +121,7 @@ for j = 1 : N
                 case 'WQRS' % WQRS PhysioNet's detectors
                     disp(['Evaluating WQRS detector in ' database ' ECG channel ' num2str(j) ', Record ' num2str(i) ', Remaining ' num2str(L-i) ' records']);
                     wqrs(record_id,[],[],j+m); % Creates a .wqrs annotation file at the current directory
-                    det = rdann(record_id,'wqrs'); % Read .qrs annotation file
+                    det = rdann(record_id,'wqrs'); % Read .wqrs annotation file
                     
                 case 'SQRS' % SQRS PhysioNet's detectors
                     disp(['Evaluating SQRS detector in ' database ' ECG channel ' num2str(j) ', Record ' num2str(i) ', Remaining ' num2str(L-i) ' records']);
@@ -155,7 +154,7 @@ for j = 1 : N
                 case 'WQRS' % WQRS PhysioNet's detectors
                     disp(['Evaluating WQRS detector in ' database ' ECG channel ' num2str(j) ', Record ' num2str(i) ', Remaining ' num2str(L-i) ' records']);
                     wqrs(record_id,[],[],j); % Creates a .wqrs annotation file at the current directory
-                    det = rdann(record_id,'wqrs'); % Read .qrs annotation file
+                    det = rdann(record_id,'wqrs'); % Read .wqrs annotation file
                     
                 case 'SQRS' % SQRS PhysioNet's detectors
                     disp(['Evaluating SQRS detector in ' database ' ECG channel ' num2str(j) ', Record ' num2str(i) ', Remaining ' num2str(L-i) ' records']);
@@ -214,7 +213,7 @@ for j = 1 : N
         Se = tp/(tp+fn)*100; % Sensitivity
         PP = tp/(tp+fp)*100; % Positive predictivity
         % In case tp and fp are 0, PP is undefined.  This occurs, for
-        % example, with PT detector in INCART  database channel 11 record
+        % example, with PT detector in INCART database channel 11 record
         % 66  
         if isnan(PP) 
             PP = 100; 
@@ -222,7 +221,7 @@ for j = 1 : N
         DER = (fp+fn)/(tp+fn)*100; % Detection error rate
         
         % The shortest Euclidean distance to perfect detection (point (0,1)
-        % in the ROC curve) 
+        % in an ROC curve) 
         SDTP = sqrt( (1-Se/100)^2 + (1-PP/100)^2 ); 
         
         % cell of detections (QRS complex localization)

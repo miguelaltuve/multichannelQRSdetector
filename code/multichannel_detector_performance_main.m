@@ -28,10 +28,17 @@ cd ../data/
 for i = 1:length(database)
     
     % Pan and Tompkins filter-based
-    
     % Training
     % Detection threshold vector to find the optimal threshold
-    beta = -1.2:0.01:1.2;
+    %     beta = -1.2:0.01:1.2; % uncomment this line to find the optimal beta within a search space
+    %%%--- comment this part if the previous line was uncommented ----%%
+    switch database
+        case 'MIT'
+            beta = -0.125;
+        case 'INCART'
+            beta = 0.2;
+    end
+    %%%---------------------------------------------------------------%%
     disp(['Training PT detector in ' database{i}]);
     [performance{i}.Train.PT, coefficients{i}.PT, beta_opt{i}.PT] = multichannel_detector_training(detectionsTemp{i}.PT, database{i}, beta);
     % Test
@@ -41,7 +48,15 @@ for i = 1:length(database)
     % Benitez et al. Hilbert transform-based
     % Training
     % Detection threshold vector to find the optimal threshold
-    beta = -3:0.01:1;
+    % beta = -3:0.01:1; % uncomment this line to find the optimal beta within a search space
+    %%%--- comment this part if the previous line was uncommented ----%%
+    switch database
+        case 'MIT'
+            beta = 0.215;
+        case 'INCART'
+            beta = 1.25;
+    end
+    %%%---------------------------------------------------------------%%
     disp(['Training HT detector in ' database{i}]);
     [performance{i}.Train.HT, coefficients{i}.HT, beta_opt{i}.HT] = multichannel_detector_training(detectionsTemp{i}.HT, database{i}, beta);
     % Test
@@ -51,7 +66,15 @@ for i = 1:length(database)
     % Ramakrishnan et al. dynamic plosion index-based
     % Training
     % Detection threshold vector to find the optimal threshold
-    beta = -0.7:0.01:0.5;
+    % beta = -0.7:0.01:0.5; % uncomment this line to find the optimal beta within a search space
+    %%%--- comment this part if the previous line was uncommented ----%%
+    switch database
+        case 'MIT'
+            beta = -0.1;
+        case 'INCART'
+            beta = -0.135;
+    end
+    %%%---------------------------------------------------------------%%
     disp(['Training DPI detector in ' database{i}]);
     [performance{i}.Train.DPI, coefficients{i}.DPI, beta_opt{i}.DPI] = multichannel_detector_training(detectionsTemp{i}.DPI, database{i}, beta);
     % Test
@@ -61,7 +84,15 @@ for i = 1:length(database)
     % GQRS PhysioNet's detectors
     % Training
     % Detection threshold vector to find the optimal threshold
-    beta = -3:0.01:7;
+    % beta = -3:0.01:7; % uncomment this line to find the optimal beta within a search space
+    %%%--- comment this part if the previous line was uncommented ----%%
+    switch database
+        case 'MIT'
+            beta = 0.29;
+        case 'INCART'
+            beta = 2.785;
+    end
+    %%%---------------------------------------------------------------%%
     disp(['Training GQRS detector in ' database{i}]);
     [performance{i}.Train.GQRS, coefficients{i}.GQRS, beta_opt{i}.GQRS] = multichannel_detector_training(detectionsTemp{i}.GQRS, database{i}, beta);
     % Test
@@ -71,7 +102,14 @@ for i = 1:length(database)
     % WQRS PhysioNet's detectors
     %  Training
     % Detection threshold vector to find the optimal threshold
-    beta = -5:0.02:1;
+    % beta = -5:0.02:1; % uncomment this line to find the optimal beta within a search space
+    switch database
+        case 'MIT'
+            beta = -0.53;
+        case 'INCART'
+            beta = -0.24;
+    end
+    %%%---------------------------------------------------------------%%
     disp(['Training WQRS detector in ' database{i}]);
     [performance{i}.Train.WQRS, coefficients{i}.WQRS, beta_opt{i}.WQRS] = multichannel_detector_training(detectionsTemp{i}.WQRS, database{i}, beta);
     % Test
@@ -81,7 +119,14 @@ for i = 1:length(database)
     % SQRS PhysioNet's detectors
     %  Training
     % Detection threshold vector to find the optimal threshold
-    beta = -5:0.02:2;
+    % beta = -5:0.02:2; % uncomment this line to find the optimal beta within a search space
+    switch database
+        case 'MIT'
+            beta = 0.49;
+        case 'INCART'
+            beta = 1.02;
+    end
+    %%%---------------------------------------------------------------%%
     disp(['Training SQRS detector in ' database{i}]);
     [performance{i}.Train.SQRS, coefficients{i}.SQRS, beta_opt{i}.SQRS] = multichannel_detector_training(detectionsTemp{i}.SQRS, database{i}, beta);
     % Test

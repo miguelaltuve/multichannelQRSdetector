@@ -1,10 +1,10 @@
 function [performance, Detections] = multichannel_detector_test(detections, database, beta, coefficients)
 % This function permits to test the multichannel detector from
 % singlechannel detection, and weighting coefficients alpha and decision
-% threshold beta estimated in the learning period.  
+% threshold beta estimated in the learning period.
 % As recommended by the ANSI/AAMI EC38:1998, the performance of the
 % multichannel QRS complex detector was evaluated from minute 5 of each
-% record (300 s).  
+% record (300 s).
 % Author: Miguel Altuve, PhD
 % Date: March 2018
 % Email: miguelaltuve@gmail.com
@@ -22,7 +22,7 @@ switch database
 end
 
 % Time specifying the match window size. A detection time is considered TP
-% if it lies within a 150 ms matching window of a reference annotation time 
+% if it lies within a 150 ms matching window of a reference annotation time
 matchWindow = '0.15';
 
 % The multi-channel QRS complex detector simultaneously monitors N
@@ -63,10 +63,10 @@ for i = 1 : L
         % As recommended by the ANSI/AAMI EC38:1998, from minute 5 of each
         % record were used to evaluate the detection performance. Also, a
         % beat-by-beat comparison was performed using MATLAB wrapper
-        % function bxb.   
+        % function bxb.
         cd ..
         % Reading the annotation provided in the database (do not use rdann
-        % because the number obtained is incorrect) 
+        % because the number obtained is incorrect)
         report=bxb([database '/' record_id],'atr','atr',['bxbReport' record_id '.txt'],'300',[],matchWindow);
         delete(['bxbReport' record_id '.txt']);
         
@@ -89,7 +89,7 @@ for i = 1 : L
         % As recommended by the ANSI/AAMI EC38:1998, from minute 5 of each
         % record were used to evaluate the detection performance. Also, a
         % beat-by-beat comparison was performed using MATLAB wrapper
-        % function bxb.   
+        % function bxb.
         cd ..
         report=bxb([database '/' record_id],'atr','test',['bxbReport' record_id '.txt'],'300',[],matchWindow);
         delete(['bxbReport' record_id '.txt']);
@@ -109,7 +109,7 @@ for i = 1 : L
     DER = (fp+fn)/(tp+fn)*100; % Detection error rate
     
     % The shortest Euclidean distance to perfect detection (point (0,1) in
-    % the ROC curve) 
+    % the ROC curve)
     SDTP = sqrt( (1-Se/100)^2 + (1-PP/100)^2 );
     
     % cell of detections (QRS complex localization)
@@ -119,7 +119,7 @@ for i = 1 : L
     performance(i,:) = [string(record_id), tp,fn,fp,Se,PP,DER,SDTP];
     
     cd(data_path);
-
+    
 end
 
 cd ..

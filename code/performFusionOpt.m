@@ -1,6 +1,6 @@
 function fusion = performFusionOpt(det, detWin, coefficients, beta)
 %
-%     fusion = performFusion(det, fs, fusionType)
+%     fusion = performFusionOpt(det, detWin, coefficients, beta)
 %
 %     Function to perform fusion of different detection results using the
 %     Chair and Varshney optimal fusion method
@@ -9,17 +9,12 @@ function fusion = performFusionOpt(det, detWin, coefficients, beta)
 %     made on the different detection channels. Every row should correspond
 %     to a detection signal.
 %
-%     'fs' is the sampling frequency used to perform the detection.
+%     'detWin' length of the detection windows to decide a TP. Length = 150 ms.
 %
-%     'coefDet' are the weights to be used on each channel when a detection
-%     is signaled.
-%     
-%     'coefNoDet' are the weights to be used on each channel when detection
-%     is not signaled
+%     'coefficients' weighting coefficients of detections (1st row, y = +1)
+%      and no detection (2nd row, y = -1)
 %
-%     'a0' is the coefficient that corresponds to probability of occurrence
-%     of the event being detected. It must be determined before using this
-%     routine
+%     'beta' decision threshold.
 %
 %     This routine was developed by the Simon Bolivar University's Applied
 %     Biophysics and Bioengineering Group (GBBA-USB) for free and public
@@ -34,8 +29,6 @@ function fusion = performFusionOpt(det, detWin, coefficients, beta)
 
 %Variable to count which detection signals are empty
 emp = false(size(det));
-%Detection window
-% detWin = ceil(150/1000*fs); % ventana para la fusion 150 ms
 %Detection counter
 k = 1;
 %Initialize fusion result
@@ -67,7 +60,7 @@ while ~all(emp)
         if i ~= chan && ~isempty(det{i})%Do not compare channel with itself or with an empty channel
             if det{i}(1) - comp <= detWin %If detections are close enough
                 %Mark detection
-                count(i) = 1; 
+                count(i) = 1;
                 %Sample where detection occurs
                 DetectSample = [DetectSample det{i}(1)];
                 %Eliminate detection that has already been analyzed
@@ -88,7 +81,7 @@ while ~all(emp)
     
     %Perform fusion
     %Initialize sum with offset a0
-    sum = 0; 
+    sum = 0;
     %Start adding
     for i = 1 : length(count)
         if count(i) == 1 %If the lead signaled detection sum the corresponding ai

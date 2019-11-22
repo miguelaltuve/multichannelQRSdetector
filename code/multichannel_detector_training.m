@@ -3,7 +3,7 @@ function [performance, coefficients, beta_opt] = multichannel_detector_training(
 % coefficients alpha and decision threshold beta were estimated in the
 % learning period. As recommended by the ANSI/AAMI EC38:1998, the first
 % five minutes of each record were used in a learning period to estimate
-% coefficients alpha and threshold beta.    
+% coefficients alpha and threshold beta.
 % Author: Miguel Altuve, PhD
 % Date: March 2018
 % Email: miguelaltuve@gmail.com
@@ -34,7 +34,7 @@ matchWindow = '0.15';
 % was chosen to be 150 ms long (TD = matchWindow) to tackle with the
 % different QRS complex morphologies and different latencies of the cardiac
 % electric phenomena, as consequence of the spatial variation of electrode
-% placement, that could produce individual decisions shifted in time.        
+% placement, that could produce individual decisions shifted in time.
 TD = ceil(150/1000*fs);
 
 cd(data_path);
@@ -46,7 +46,7 @@ N = size(detections,2); % Number of ECG channels in the database
 
 %=======Estimating weighting coefficients alpha=================
 % The reliability of detector decisions in individual channels is taken
-% into account as the weighted sum of decisions 
+% into account as the weighted sum of decisions
 
 disp('Estimating weighting coefficients alpha');
 
@@ -57,7 +57,7 @@ PP = zeros(L, N); % Positive predictivity
 for j = 1 : N
     
     % Reading singlechannel detections on every record (first 5 minutes of
-    % the record) 
+    % the record)
     for i = 1 : L
         
         record_id=records(i).name(1:3); % Name of record
@@ -71,10 +71,10 @@ for j = 1 : N
             % As recommended by the ANSI/AAMI EC38:1998, the first 5
             % minutes of each record were used in a learning period to
             % estimate coefficients alpha. Also, a beat-by-beat comparison
-            % was performed using MATLAB wrapper function bxb    
+            % was performed using MATLAB wrapper function bxb
             cd ..
             %Reading the annotation provided in the database (do not use
-            %rdann because the number obtained is incorrect) 
+            %rdann because the number obtained is incorrect)
             report=bxb([database '/' record_id],'atr','atr',['bxbReport' record_id '.txt'],'0','300',matchWindow);
             delete(['bxbReport' record_id '.txt']); % Deleting the file
             
@@ -97,13 +97,13 @@ for j = 1 : N
             % As recommended by the ANSI/AAMI EC38:1998, the first 5
             % minutes of each record were used in a learning period to
             % estimate coefficients alpha. Also, a beat-by-beat comparison
-            % was performed using MATLAB wrapper function bxb.    
+            % was performed using MATLAB wrapper function bxb.
             
             cd ..
             report=bxb([database '/' record_id],'atr','test',['bxbReport' record_id '.txt'],'0','300',matchWindow);
             delete(['bxbReport' record_id '.txt']); % Deleting the file
             
-            % Measures 
+            % Measures
             tp =sum(sum(report.data(1:5,1:5))); % True positive
             fn =sum(report.data(1:5,6)); % False negative
             fp =sum(report.data(6:end,1)); % False positive
@@ -131,7 +131,7 @@ coefficients(2,:) = log10(mean(PP)./(1-mean(Se))); % if y = -1
 % Threshold beta, used to decide whether a detection is true or false, was
 % estimated in the learning period. For various threshold values, the
 % threshold that leads to the shortest Euclidean distance to perfect
-% detection was selected   
+% detection was selected
 
 disp('Estimating decision threshold beta');
 
@@ -152,7 +152,7 @@ for j = 1:M
         
         % Reading N singlechannel detections of record i
         det = detections(i,:);
-        % Perform optimal fusion from signlechannel detections 
+        % Perform optimal fusion from signlechannel detections
         det = performFusionOpt(det, TD, coefficients, beta(j));
         
         % In case there are no detections reported by the multichannel detector
@@ -161,10 +161,10 @@ for j = 1:M
             % As recommended by the ANSI/AAMI EC38:1998, the first 5
             % minutes of each record were used in a learning period to
             % estimate coefficients alpha. Also, a beat-by-beat comparison
-            % was performed using MATLAB wrapper function bxb.   
+            % was performed using MATLAB wrapper function bxb.
             cd ..
             % Reading the annotation provided in the database (do not use
-            % rdann because the number obtained is incorrect) 
+            % rdann because the number obtained is incorrect)
             report=bxb([database '/' record_id],'atr','atr',['bxbReport' record_id '.txt'],'0','300',matchWindow);
             delete(['bxbReport' record_id '.txt']);
             
@@ -187,7 +187,7 @@ for j = 1:M
             % As recommended by the ANSI/AAMI EC38:1998, the first 5
             % minutes of each record were used in a learning period to
             % estimate coefficients alpha. Also, a beat-by-beat comparison
-            % was performed using MATLAB wrapper function bxb.   
+            % was performed using MATLAB wrapper function bxb.
             cd ..
             report=bxb([database '/' record_id],'atr','test',['bxbReport' record_id '.txt'],'0','300',matchWindow);
             delete(['bxbReport' record_id '.txt']); % Deleting the file
@@ -208,25 +208,25 @@ for j = 1:M
         DER = (fp+fn)/(tp+fn)*100; % Detection error rate
         
         % The shortest Euclidean distance to perfect detection (point (0,1)
-        % in the ROC curve) 
-        SDTP = sqrt( (1-Se/100)^2 + (1-PP/100)^2 );        
+        % in the ROC curve)
+        SDTP = sqrt( (1-Se/100)^2 + (1-PP/100)^2 );
         
         TEMP(i,:) = [tp,fn,fp,Se,PP,DER,SDTP];
-     
+        
         cd(data_path);
         
     end
     
     performance(j,:) = [beta(j), sum(TEMP)];
     performance(j,5:end) = performance(j,5:end)/L; % Performance average
-   
+    
     
 end
 
 % Get SDTP
 TEMP = performance(:,end);
 % In case various thresholds met the SDTP criteria, the mean value of these
-% thresholds was selected. 
+% thresholds was selected.
 beta_opt = mean(beta(TEMP == min(TEMP)));
 
 cd ..
