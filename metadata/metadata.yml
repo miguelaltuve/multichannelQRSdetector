@@ -1,3 +1,12 @@
 metadata_version: 1
 name: Untitled Capsule Nov 21, 2019 03:17
-corresponding_contributor: {}
+authors:
+- name: Carlos A. Ledezma
+  affiliations:
+  - name: University College London
+- name: Miguel Altuve
+  affiliations:
+  - name: Pontifical Bolivarian University
+corresponding_contributor:
+  name: Miguel Altuve
+  email: miguelaltuve@gmail.com

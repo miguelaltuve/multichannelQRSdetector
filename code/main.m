@@ -1,13 +1,10 @@
-%cd /home/miguelaltuve/Documents/MATLAB/detection_latidos_multilead/code
+% This is the main script
 
-%addpath(pwd);
+% Add code folder to the search path
+addpath(pwd); 
 
-%singlechannel_detection_performance_main;
+% perform singlechannel detections
+singlechannel_detection_performance_main; 
 
-%multichannel_detector_performance_main;
-
-wfdbdemo;
-
-[sig, Fs, tm] = rdsamp('mitdb/100', 1);
-plot(tm, sig);
-saveas(gcf, '../results/mitdb100.png');
+% perform multichannel detections
+multichannel_detector_performance_main;
