@@ -96,7 +96,3 @@ cd ../results/
 save('DetectionsMultichannel','detections');
 % Save multichannel QRS complex detection performance
 save('PerformanceMultichannel','performance','coefficients','beta_opt');
-
-%%%%%%%%%%%%
-% exit
-%%%%%%%%%%%%
