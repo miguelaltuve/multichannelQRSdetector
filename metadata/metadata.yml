@@ -1,7 +1,20 @@
 metadata_version: 1
 name: Optimal data fusion for the improvement of QRS complex detection in multi-channel
   ECG recordings
-description: This capsule contains the code for reproducing the result
+description: This capsule contains the code for reproducing the result of the paper
+  entitled "Optimal data fusion for the improvement of QRS complex detection in multi-channel
+  ECG recordings." published in Medical & Biological Engineering & Computing.
+tags:
+- MATLAB
+- qrs-complexes
+- 12-lead-ecg
+- electrocardiogram
+- biomedical-engineering
+- signal-processing
+- digital-filter
+- optimization
+- Physionet
+- WFDB
 authors:
 - name: Carlos A. Ledezma
   affiliations:
