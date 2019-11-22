@@ -1,5 +1,5 @@
-# hash:sha256:7c52e26fb43dfeb0ccdf085b5b2b969076c9a9cbf146e63e1ba824db1c82b15e
-FROM registry.codeocean.com/codeocean/matlab:2016b-ubuntu16.04
+# hash:sha256:2586b78db20e2e420bfeb87a199b1ccc0bb6973f523df84ba3feef6ef0d932f1
+FROM registry.codeocean.com/codeocean/matlab:2016b-cuda8.0.61-cudnn6.0.21-ubuntu16.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG MLM_LICENSE_FILE
