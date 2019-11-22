@@ -1,5 +1,7 @@
 metadata_version: 1
-name: Untitled Capsule Nov 21, 2019 03:17
+name: Optimal data fusion for the improvement of QRS complex detection in multi-channel
+  ECG recordings
+description: This capsule contains the code for reproducing the result
 authors:
 - name: Carlos A. Ledezma
   affiliations:
