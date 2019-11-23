@@ -5,7 +5,7 @@ Code of the paper Ledezma, C. A., & Altuve, M. (2019). Optimal data fusion for t
 The multi-channel detection approach was validated using six different single-channel QRS complex detectors: Pan and Tompkins [1], Benítez et al. [2], Ramakrishnan et al. [3], and PhysioNet’s detectors GQRS, WQRS and SQRS [4,5]. The detectors were applied to two multi-channel ECG databases: MIT-BIH Arrhythmia and INCART.
 
 The following MATLAB functions correspond to the single-channel QRS complex detectors:
-1. pan_tompkin.m: Pan and Tompkins filter-based detection method [1].
+1. pan_tompkin.m: Pan and Tompkins filter-based detection method [1]. Coded by Hooman Sedghamiz (2014), Linkoping university.
 2. detectHT.m: Benítez et al. Hilbert transform-based detection method [2].
 3. dpi_qrs.m: the Ramakrishnan et al. dynamic plosion index-based detection method [3].
 
