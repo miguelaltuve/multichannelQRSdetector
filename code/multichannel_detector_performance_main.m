@@ -13,7 +13,6 @@
 % Email: miguelaltuve@gmail.com
 % Last updated: May 2018
 
-
 database = {'MIT','INCART'}; % name of the databases
 
 % Loading singlechannel detections
@@ -32,11 +31,10 @@ for i = 1:length(database)
     % Detection threshold vector to find the optimal threshold
     %     beta = -1.2:0.01:1.2; % uncomment this line to find the optimal beta within a search space
     %%%--- comment this part if the previous line was uncommented ----%%
-    switch database
-        case 'MIT'
-            beta = -0.125;
-        case 'INCART'
-            beta = 0.2;
+    if strcmp(database(i),'MIT') % These are the optimal values reported in the paper
+        beta = -0.125;
+    else
+        beta = 0.2;
     end
     %%%---------------------------------------------------------------%%
     disp(['Training PT detector in ' database{i}]);
@@ -50,11 +48,10 @@ for i = 1:length(database)
     % Detection threshold vector to find the optimal threshold
     % beta = -3:0.01:1; % uncomment this line to find the optimal beta within a search space
     %%%--- comment this part if the previous line was uncommented ----%%
-    switch database
-        case 'MIT'
-            beta = 0.215;
-        case 'INCART'
-            beta = 1.25;
+    if strcmp(database(i),'MIT') % These are the optimal values reported in the paper
+        beta = 0.215;
+    else
+        beta = -1.25;
     end
     %%%---------------------------------------------------------------%%
     disp(['Training HT detector in ' database{i}]);
@@ -68,11 +65,10 @@ for i = 1:length(database)
     % Detection threshold vector to find the optimal threshold
     % beta = -0.7:0.01:0.5; % uncomment this line to find the optimal beta within a search space
     %%%--- comment this part if the previous line was uncommented ----%%
-    switch database
-        case 'MIT'
-            beta = -0.1;
-        case 'INCART'
-            beta = -0.135;
+    if strcmp(database(i),'MIT') % These are the optimal values reported in the paper
+        beta = -0.1;
+    else
+        beta = -0.135;
     end
     %%%---------------------------------------------------------------%%
     disp(['Training DPI detector in ' database{i}]);
@@ -86,11 +82,10 @@ for i = 1:length(database)
     % Detection threshold vector to find the optimal threshold
     % beta = -3:0.01:7; % uncomment this line to find the optimal beta within a search space
     %%%--- comment this part if the previous line was uncommented ----%%
-    switch database
-        case 'MIT'
-            beta = 0.29;
-        case 'INCART'
-            beta = 2.785;
+    if strcmp(database(i),'MIT') % These are the optimal values reported in the paper
+        beta = 0.29;
+    else
+        beta = 2.785;
     end
     %%%---------------------------------------------------------------%%
     disp(['Training GQRS detector in ' database{i}]);
@@ -103,11 +98,10 @@ for i = 1:length(database)
     %  Training
     % Detection threshold vector to find the optimal threshold
     % beta = -5:0.02:1; % uncomment this line to find the optimal beta within a search space
-    switch database
-        case 'MIT'
-            beta = -0.53;
-        case 'INCART'
-            beta = -0.24;
+    if strcmp(database(i),'MIT') % These are the optimal values reported in the paper
+        beta = -0.53;
+    else
+        beta = -0.24;
     end
     %%%---------------------------------------------------------------%%
     disp(['Training WQRS detector in ' database{i}]);
@@ -120,11 +114,10 @@ for i = 1:length(database)
     %  Training
     % Detection threshold vector to find the optimal threshold
     % beta = -5:0.02:2; % uncomment this line to find the optimal beta within a search space
-    switch database
-        case 'MIT'
-            beta = 0.49;
-        case 'INCART'
-            beta = 1.02;
+    if strcmp(database(i),'MIT') % These are the optimal values reported in the paper
+        beta = 0.49;
+    else
+        beta = 1.02;
     end
     %%%---------------------------------------------------------------%%
     disp(['Training SQRS detector in ' database{i}]);
