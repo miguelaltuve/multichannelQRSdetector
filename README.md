@@ -2,6 +2,8 @@
 
 Code of the paper Ledezma, C. A., & Altuve, M. (2019). Optimal data fusion for the improvement of QRS complex detection in multi-channel ECG recordings. Medical & biological engineering & computing, 1-9. https://doi.org/10.1007/s11517-019-01990-3
 
+**Citation of the code**: Carlos A. Ledezma, Miguel Altuve (2019) Optimal data fusion for the improvement of QRS complex detection in multi-channel ECG recordings [Source Code]. https://doi.org/10.24433/CO.1171327.v1
+
 The multi-channel detection approach was validated using six different single-channel QRS complex detectors: Pan and Tompkins [1], Benítez et al. [2], Ramakrishnan et al. [3], and PhysioNet’s detectors GQRS, WQRS and SQRS [4,5]. The detectors were applied to two multi-channel ECG databases: MIT-BIH Arrhythmia and INCART.
 
 The following MATLAB functions correspond to the single-channel QRS complex detectors:
