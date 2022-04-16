@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Ledezma"
+  given-names: "Carlos A."
+  orcid: "https://orcid.org/0000-0002-6298-7950"
+- family-names: "Altuve"
+  given-names: "Miguel"
+  orcid: "https://orcid.org/0000-0002-4064-2601"
+title: "Optimal data fusion for the improvement of QRS complex detection in multi-channel ECG recordings [Source Code]"
+version: 1.0.0
+doi: https://doi.org/10.24433/CO.1171327.v1
+date-released: 2022-04-16
+url: "https://github.com/miguelaltuve/multichannelQRSdetector"
